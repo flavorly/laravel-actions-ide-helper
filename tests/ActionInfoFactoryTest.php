@@ -10,8 +10,8 @@ use Wulfheart\LaravelActionsIdeHelper\Tests\stubs\NewAction;
 use Wulfheart\LaravelActionsIdeHelper\Tests\stubs\NotAnAction;
 use Wulfheart\LaravelActionsIdeHelper\Tests\stubs\TestAction;
 
-it('creates a correct trait lookup', function() {
-    $result = invade(new ActionInfoFactory())->loadFromPath(__DIR__ . '/stubs');
+it('creates a correct trait lookup', function () {
+    $result = invade(new ActionInfoFactory())->loadFromPath(__DIR__.'/stubs');
 
     expect($result)->toBeArray()->toMatchArray([
         BaseAction::class => [AsObject::class],
@@ -22,18 +22,18 @@ it('creates a correct trait lookup', function() {
     expect(collect($result)->keys()->toArray())->not()->toContain(NotAnAction::class);
 });
 
-it('creates correct ActionInfos', function (){
+it('creates correct ActionInfos', function () {
     $ai = getActionInfo(BaseAction::class);
 
     expect($ai->asObject)->toBeTrue();
     expect($ai->asCommand)->toBeFalse();
 
-    expect($ai->classInfo instanceof  Class_)->toBeTrue();
+    expect($ai->classInfo instanceof Class_)->toBeTrue();
     expect($ai->classInfo)->not()->toBeNull();
 });
 
-it('parses the classes correctly', function() {
-    $result = invade(new ActionInfoFactory())->loadPhpDocumentorReflectionClassMap(__DIR__ . '/stubs');
+it('parses the classes correctly', function () {
+    $result = invade(new ActionInfoFactory())->loadPhpDocumentorReflectionClassMap(__DIR__.'/stubs');
 
     $keys = collect($result)->keys()->toArray();
     expect($keys)->toContain(NotAnAction::class, BaseAction::class, NotAnAction::class, TestAction::class);

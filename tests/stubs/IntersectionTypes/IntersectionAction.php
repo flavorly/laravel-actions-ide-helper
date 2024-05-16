@@ -9,8 +9,8 @@ class IntersectionAction
 {
     use AsObject;
 
-    public function handle(\stdClass&Array_ $permissionable): ?\stdClass{
+    public function handle(\stdClass&Array_ $permissionable): ?\stdClass
+    {
         return null;
     }
-
 }

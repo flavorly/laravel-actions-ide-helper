@@ -2,6 +2,7 @@
 
 namespace Wulfheart\LaravelActionsIdeHelper\Service\Generator\DocBlock;
 
+use phpDocumentor\Reflection\DocBlock\Tag;
 use Wulfheart\LaravelActionsIdeHelper\Service\ActionInfo;
 
 interface DocBlockGeneratorInterface
@@ -9,8 +10,7 @@ interface DocBlockGeneratorInterface
     public static function create(): self;
 
     /**
-     * @param  \Wulfheart\LaravelActionsIdeHelper\Service\ActionInfo  $info
-     * @return \phpDocumentor\Reflection\DocBlock\Tag[]
+     * @return Tag[]
      */
     public function generate(ActionInfo $info): array;
 }

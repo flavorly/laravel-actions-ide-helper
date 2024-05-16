@@ -8,6 +8,7 @@ class VoidAction
 {
     use AsAction;
 
-    public function handle(int $i): void{}
-
+    public function handle(int $i): void
+    {
+    }
 }

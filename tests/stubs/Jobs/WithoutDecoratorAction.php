@@ -8,6 +8,7 @@ class WithoutDecoratorAction
 {
     use AsJob;
 
-    public function handle(){}
-
+    public function handle()
+    {
+    }
 }

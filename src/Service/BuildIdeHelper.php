@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Wulfheart\LaravelActionsIdeHelper\Service;
 
 use phpDocumentor\Reflection\DocBlock;
@@ -21,7 +20,7 @@ class BuildIdeHelper
     }
 
     /**
-     * @param  \Wulfheart\LaravelActionsIdeHelper\Service\ActionInfo[]  $actionInfos
+     * @param  ActionInfo[]  $actionInfos
      */
     public function build(array $actionInfos): string
     {
@@ -32,7 +31,7 @@ class BuildIdeHelper
         $nodes = [];
         /**
          * @var string $namespace
-         * @var \Wulfheart\LaravelActionsIdeHelper\Service\ActionInfo[] $items
+         * @var ActionInfo[] $items
          */
         $factory = new BuilderFactory();
         foreach ($groups as $namespace => $items) {
@@ -45,6 +44,7 @@ class BuildIdeHelper
         $nodes[] = $this->getTraitIdeHelpers($factory);
         $printer = new Standard();
         $data = $printer->prettyPrintFile($nodes);
+
         return $data;
     }
 
@@ -54,7 +54,6 @@ class BuildIdeHelper
         foreach ($info->getGenerators() as $generator) {
             $tags = array_merge($tags, $generator::create()->generate($info));
         }
-
 
         return $this->serializeDocBlocks(...$tags);
     }
@@ -81,19 +80,19 @@ class BuildIdeHelper
     {
         return $factory->namespace("Lorisleiva\Actions\Concerns")
             ->addStmt(
-                (new Trait_("AsController"))->setDocComment(
+                (new Trait_('AsController'))->setDocComment(
                     $this->serializeDocBlocks(
                         new DocBlock\Tags\Method('asController', [], $this->resolveType('void'))
                     )
                 )
             )->addStmt(
-                (new Trait_("AsListener"))->setDocComment(
+                (new Trait_('AsListener'))->setDocComment(
                     $this->serializeDocBlocks(
                         new DocBlock\Tags\Method('asListener', [], $this->resolveType('void'))
                     )
                 )
             )->addStmt(
-                (new Trait_("AsJob"))->setDocComment(
+                (new Trait_('AsJob'))->setDocComment(
                     $this->serializeDocBlocks(
                         new DocBlock\Tags\Method('asJob', [], $this->resolveType('void'))
                     )
@@ -101,7 +100,7 @@ class BuildIdeHelper
 
             )
             ->addStmt(
-                (new Trait_("AsCommand"))->setDocComment(
+                (new Trait_('AsCommand'))->setDocComment(
                     $this->serializeDocBlocks(
                         new DocBlock\Tags\Method('asCommand', arguments: [
                             ['name' => 'command', 'type' => $this->resolveType("\Illuminate\Console\Command")],
@@ -111,7 +110,5 @@ class BuildIdeHelper
             )
             ->getNode();
 
-
     }
-
 }

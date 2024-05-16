@@ -1,13 +1,12 @@
 <?php
 
 namespace Wulfheart\LaravelActionsIdeHelper\Tests\stubs;
-use Lorisleiva\Actions\Concerns\AsAction;
 
+use Lorisleiva\Actions\Concerns\AsAction;
 
 class TestAction
 {
     use AsAction;
-
 
     /**
      * @returns int
